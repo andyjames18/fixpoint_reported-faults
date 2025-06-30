@@ -1,44 +1,25 @@
-// Toggle dropdown menu
 document.addEventListener("DOMContentLoaded", () => {
-  const menuButton = document.getElementById("dropdownToggle");
-  const dropdownMenu = document.getElementById("dropdownMenu");
+  const faultsTable = document.querySelector("#faultsTable tbody");
 
-  if (menuButton && dropdownMenu) {
-    menuButton.addEventListener("click", () => {
-      dropdownMenu.classList.toggle("show");
-    });
-  }
-
-  // Simple protection already included via index.html password check
-});
-
-// Smooth scroll to section
-function scrollToSection(id) {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-}
-
-// Export tables to Excel
-function exportToExcel() {
-  const tableIds = [
-    "faultsTable",
-    "waitingRepairTable",
-    "repairCostsTable",
-    "downtimeChart",
-    "estimatedLossChart"
+  // Simulated data (replace with Supabase data fetch)
+  const sampleFaults = [
+    { date: "2025-06-30", machine: "60086 - COOL SCOOP", description: "Screen not responding", reportedBy: "John", status: "Incomplete" },
+    { date: "2025-06-29", machine: "63217 - DOUBLE PONY", description: "Power not coming on", reportedBy: "Sarah", status: "Complete" }
   ];
 
-  const wb = XLSX.utils.book_new();
-
-  tableIds.forEach(id => {
-    const table = document.getElementById(id);
-    if (table) {
-      const ws = XLSX.utils.table_to_sheet(table);
-      XLSX.utils.book_append_sheet(wb, ws, id.replace("Table", "").replace("Chart", ""));
-    }
+  sampleFaults.forEach(fault => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${fault.date}</td>
+      <td>${fault.machine}</td>
+      <td>${fault.description}</td>
+      <td>${fault.reportedBy}</td>
+      <td>${fault.status}</td>
+    `;
+    faultsTable.appendChild(row);
   });
+});
 
-  XLSX.writeFile(wb, "FixPoint_Engineer_Report.xlsx");
+function exportToExcel() {
+  alert("Export to Excel functionality would trigger here.");
 }
