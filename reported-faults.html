@@ -2,29 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reported Faults - FixPoint</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reported Faults | FixPoint Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header>
-    <img src="44EC1233-3400-4C62-BD27-30146EAED4F5.png" alt="FixPoint Logo" class="logo" />
-    <h1>Reported Faults</h1>
-    <nav>
-      <a href="index.html">⬅ Back to Dashboard</a>
-    </nav>
+    <div class="logo-title">
+      <img src="44EC1233-3400-4C62-BD27-30146EAED4F5.png" alt="FixPoint Logo" class="logo" />
+      <h1>Reported Faults</h1>
+      <a href="index.html" class="back-button">⬅ Back to Dashboard</a>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>Reported Faults Table</h2>
+    <section id="reported-faults">
+      <h2>Reported Faults</h2>
       <div id="faultsTable">
-        <!-- Table will be populated by script.js -->
+        <!-- Dynamic fault data table goes here -->
+        <table>
+          <thead>
+            <tr>
+              <th>Machine ID</th>
+              <th>Machine Name</th>
+              <th>Date Reported</th>
+              <th>Power Off Time</th>
+              <th>Status</th>
+              <th>Submitted By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>60086</td>
+              <td>COOL SCOOP</td>
+              <td>2025-06-30</td>
+              <td>14:12</td>
+              <td>Pending</td>
+              <td>Alex</td>
+            </tr>
+            <!-- More rows will be fetched dynamically if hooked to Supabase -->
+          </tbody>
+        </table>
       </div>
       <button onclick="exportToExcel()">Export to Excel</button>
     </section>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
